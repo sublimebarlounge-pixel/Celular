@@ -205,27 +205,6 @@
             font-weight: 500;
         }
 
-        /* Estilo específico para a tabela simplificada do Copão */
-        .copao-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        
-        .copao-table td {
-            padding: 10px 0;
-            font-size: 14px;
-            color: var(--white);
-            font-weight: 500;
-            border-bottom: 1px dotted rgba(42,42,42,0.3);
-        }
-        
-        .copao-table td:last-child {
-            text-align: right;
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
         .combo-group { 
             margin-bottom: 28px; 
         }
@@ -377,11 +356,6 @@
                 font-size: 11px;
                 padding: 8px 3px;
             }
-            
-            .copao-table td {
-                font-size: 13px;
-                padding: 8px 0;
-            }
 
             .caipirinha-obs {
                 font-size: 11px;
@@ -432,7 +406,6 @@
             <a href="#cervejas">Cervejas</a>
             <a href="#caipirinhas">Caipirinhas</a>
             <a href="#doses-shots">Doses</a>
-            <a href="#copao">Copão</a>
             <a href="#petiscos">Petiscos</a>
             <a href="#combos">Combos</a>
             <a href="#bebidas">Bebidas</a>
@@ -574,11 +547,23 @@
             </div>
         </div>
 
-                <!-- CAIPIRINHAS -->
+        <!-- CAIPIRINHAS -->
         <div class="section" id="caipirinhas">
             <div class="section-title">Caipirinhas</div>
             <div class="section-subtitle">Escolha sua base</div>
             <div class="divider"></div>
+
+            <!-- ===== NOVA OBSERVAÇÃO SOBRE O ADICIONAL SMIRNOFF ===== -->
+            <div class="caipirinha-obs">
+                🍸 <strong>Caipirinha com Vodka Smirnoff</strong> · 
+                <span class="destaque">+ R$ 2,00</span>
+                <span class="smirnoff-adicional">Adicional</span>
+                <br>
+                <span style="font-size: 12px; opacity: 0.8;">
+                    Os valores da coluna <strong>Vodka</strong> já incluem vodka nacional. 
+                    Ao optar por <strong>Smirnoff</strong>, acrescente R$ 2,00.
+                </span>
+            </div>
 
             <table class="menu-table">
                 <tr>
@@ -591,32 +576,35 @@
                     <td>Limão</td>
                     <td>29,99</td>
                     <td>31,99</td>
-                    <td>30,99 🍸</td>
+                    <td>30,99</td>
                 </tr>
                 <tr>
                     <td>Limão com Morango</td>
                     <td>29,99</td>
                     <td>31,99</td>
-                    <td>30,99 🍸</td>
+                    <td>30,99</td>
                 </tr>
                 <tr>
                     <td>Morango</td>
                     <td>29,99</td>
                     <td>31,99</td>
-                    <td>30,99 🍸</td>
+                    <td>30,99</td>
                 </tr>
                 <tr>
                     <td>Maracujá</td>
                     <td>31,00</td>
                     <td>33,00</td>
-                    <td>32,00 🍸</td>
+                    <td>32,00</td>
                 </tr>
             </table>
 
-                <!-- RODAPÉ DA TABELA COM ADICIONAL SMIRNOFF -->
-            <div style="text-align: left; margin-top: 18px; font-size: 11px; color: var(--gold); opacity: 0.8; padding-left: 8px;">
-                🍸 Smirnoff + R$ 2,00 (adicional)
+            <!-- ===== OBSERVAÇÃO ADICIONAL EMBAIXO DA TABELA (REFORÇO) ===== -->
+            <div style="text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-muted);">
+                <span style="background: rgba(200, 169, 110, 0.08); padding: 6px 16px; border-radius: 20px; display: inline-block;">
+                    ⚡ <strong>Smirnoff</strong> + R$ 2,00 em qualquer caipirinha
+                </span>
             </div>
+        </div>
 
         <!-- DOSES E SHOTS -->
         <div class="section" id="doses-shots">
@@ -695,42 +683,8 @@
         </div>
     </div>
 
-    <!-- PÁGINA 2 - COPÃO E PETISCOS -->
+    <!-- PÁGINA 2 - PETISCOS -->
     <div class="page">
-        <!-- COPÃO AMIGO - SIMPLIFICADO -->
-        <div class="section" id="copao">
-            <div class="section-title">Copão Amigo</div>
-            <div class="section-subtitle">700ml · Gelado, intenso · Escolha base e sabor</div>
-            <div class="divider"></div>
-            
-            <div style="text-align: center;">
-                <span class="preco-unico">Todos os sabores · R$ 30,00</span>
-            </div>
-
-            <table class="copao-table">
-                <tr>
-                    <td>Tropical</td>
-                    <td>Gin / Vodka</td>
-                </tr>
-                <tr>
-                    <td>Frutas Vermelhas</td>
-                    <td>Gin / Vodka</td>
-                </tr>
-                <tr>
-                    <td>Maçã Verde</td>
-                    <td>Gin / Vodka</td>
-                </tr>
-                <tr>
-                    <td>Coco com Açaí</td>
-                    <td>Gin / Vodka</td>
-                </tr>
-                <tr>
-                    <td>Abacaxi com Hortelã</td>
-                    <td>Gin / Vodka</td>
-                </tr>
-            </table>
-        </div>
-
         <!-- PETISCOS -->
         <div class="section" id="petiscos">
             <div class="section-title">Petiscos</div>

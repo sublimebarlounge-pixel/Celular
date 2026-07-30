@@ -1,938 +1,975 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Sublime Bar — Cardápio Mobile</title>
-    <style>
-        /* FONTES MAIS LEGÍVEIS E MODERNAS */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap');
-
-        :root {
-            --bg: #000000;
-            --surface: #1a1a1a;
-            --gold: #c8a96e;
-            --gold-light: #d4bb82;
-            --text: #e6e6e6;
-            --text-muted: #b0b0b0;
-            --divider: #2a2a2a;
-            --white: #f5f5f5;
-            --highlight: #e8b84b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .page {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 40px 20px 30px;
-            background: var(--bg);
-            position: relative;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .logo-container {
-            width: 100%;
-            max-width: 160px;
-            margin: 0 auto 15px;
-        }
-
-        .logo-new {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .index {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px 12px;
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--divider);
-        }
-
-        .index a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            font-weight: 400;
-        }
-
-        .index a:hover { color: var(--gold); }
-
-        @media (max-width: 550px) {
-            .index a {
-                background: rgba(200, 169, 110, 0.1);
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 9px;
-            }
-        }
-
-        .section { 
-            margin-bottom: 45px; 
-            page-break-inside: avoid; 
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            color: var(--gold);
-            text-align: center;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .section-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-style: italic;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .divider {
-            width: 50px;
-            height: 1px;
-            background: var(--gold);
-            margin: 0 auto 25px;
-            opacity: 0.6;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        /* CORREÇÃO: Impede que o nome do item quebre de forma feia */
-        .item-name { 
-            color: var(--white); 
-            font-size: 15px; 
-            flex: 1; 
-            min-width: 140px;
-            font-weight: 500;
-            letter-spacing: -0.2px;
-            white-space: nowrap; /* Impede a quebra em telas maiores */
-        }
-        
-        .item-dots { 
-            flex: 1; 
-            border-bottom: 1px dotted var(--divider); 
-            min-width: 30px; 
-            margin-bottom: 4px; 
-        }
-        
-        .item-price { 
-            color: var(--gold-light); 
-            font-size: 14px; 
-            font-weight: 600;
-            white-space: nowrap; 
-        }
-        
-        /* DESCRIÇÕES MAIORES E MAIS LEGÍVEIS */
-        .item-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            padding-left: 8px;
-            font-weight: 400;
-            line-height: 1.45;
-        }
-
-        .menu-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 5px;
-            display: block;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .menu-table th {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            color: var(--gold);
-            padding: 12px 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--divider);
-            font-weight: 600;
-        }
-
-        .menu-table td { 
-            font-size: 13px; 
-            color: var(--text); 
-            text-align: center; 
-            padding: 10px 4px; 
-            border-bottom: 1px dotted rgba(42,42,42,0.5); 
-            font-weight: 400;
-        }
-        
-        .menu-table td:first-child { 
-            text-align: left; 
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        /* Estilo específico para a tabela simplificada do Copão */
-        .copao-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        
-        .copao-table td {
-            padding: 10px 0;
-            font-size: 14px;
-            color: var(--white);
-            font-weight: 500;
-            border-bottom: 1px dotted rgba(42,42,42,0.3);
-        }
-        
-        .copao-table td:last-child {
-            text-align: right;
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        .combo-group { 
-            margin-bottom: 28px; 
-        }
-        
-        .combo-group-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            font-style: italic;
-            color: var(--gold);
-            margin-bottom: 14px;
-            border-left: 2px solid var(--gold);
-            padding-left: 12px;
-            font-weight: 500;
-        }
-
-        .section-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin: 18px 0 10px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .essencias {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-muted);
-            font-size: 12px;
-            text-align: center;
-            margin-top: 10px;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        .footer {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid var(--divider);
-            text-align: center;
-            font-size: 9px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-top { 
-            text-align: right; 
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-        
-        .nav-top a { 
-            color: var(--text-muted); 
-            text-decoration: none; 
-            font-size: 10px; 
-            letter-spacing: 2px;
-            background: rgba(200, 169, 110, 0.15);
-            padding: 6px 14px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: 400;
-        }
-
-        .preco-unico {
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gold-light);
-            background: rgba(200, 169, 110, 0.1);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* ===== NOVO ESTILO PARA O ADICIONAL DE SMIRNOFF ===== */
-        .caipirinha-obs {
-            background: rgba(200, 169, 110, 0.08);
-            border-left: 3px solid var(--gold);
-            padding: 12px 16px;
-            margin: 15px 0 5px;
-            border-radius: 4px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .caipirinha-obs strong {
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        .caipirinha-obs .destaque {
-            color: var(--highlight);
-            font-weight: 600;
-        }
-
-        .smirnoff-adicional {
-            display: inline-block;
-            background: rgba(232, 184, 75, 0.12);
-            border: 1px solid rgba(232, 184, 75, 0.2);
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            color: var(--highlight);
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        @media (max-width: 480px) {
-            .page {
-                padding: 25px 15px 20px;
-            }
-            
-            /* CORREÇÃO PARA MOBILE: Permite quebra controlada e reduz tamanho da fonte */
-            .item-name {
-                font-size: 13px;
-                min-width: 120px;
-                white-space: normal; /* Permite quebrar em mobile */
-                word-break: keep-all; /* Evita quebras agressivas */
-            }
-            
-            /* Ajuste específico para itens com "Serenata" */
-            .item-name[class*="Serenata"] {
-                font-size: 12px;
-                letter-spacing: -0.3px;
-            }
-            
-            .item-price {
-                font-size: 13px;
-            }
-            
-            .item-desc {
-                font-size: 10px;
-                margin-bottom: 10px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-                letter-spacing: 3px;
-            }
-            
-            .combo-group-title {
-                font-size: 13px;
-            }
-            
-            .menu-table th, .menu-table td {
-                font-size: 11px;
-                padding: 8px 3px;
-            }
-            
-            .copao-table td {
-                font-size: 13px;
-                padding: 8px 0;
-            }
-
-            .caipirinha-obs {
-                font-size: 11px;
-                padding: 10px 12px;
-            }
-        }
-
-        /* Para telas muito pequenas (ex: iPhone SE, Galaxy Fold) */
-        @media (max-width: 380px) {
-            .item-name {
-                font-size: 12px;
-                min-width: 100px;
-            }
-            
-            .item-price {
-                font-size: 12px;
-            }
-            
-            .item-dots {
-                display: none; /* Remove os pontinhos em telas muito pequenas para ganhar espaço */
-            }
-            
-            .item {
-                justify-content: space-between;
-            }
-        }
-
-        @media print {
-            body { background: #0d0d0d; -webkit-print-color-adjust: exact; }
-            .page { padding: 40px 45px 30px; max-width: 100%; }
-        }
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260730-05-6814160","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/a27874207e105461.telemetry_sdk.js" integrity="sha512-wgI5N9F7oA2h3vH+benMYIv4wGqTct4nKWakqgvfgRyBLmfYq8q/fi6gkfWKd2hMsyN+VQ/qOAOpxybwkcoxlA=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio Digital - Sublime Bar</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .font-display { font-family: 'Playfair Display', serif; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+        .nav-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .category-btn.active { background: #1a9b8f; color: white; }
     </style>
-</head>
-<body>
-
-    <!-- PÁGINA 1 -->
-    <div class="page" id="topo">
-        <div class="header">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/3wZw0Twr/logo.png" alt="Sublime Bar Logo" class="logo-new">
-            </div>
-        </div>
-
-        <!-- NAVEGAÇÃO REORGANIZADA -->
-        <nav class="index">
-            <a href="#drinks-autor">Drinks</a>
-            <a href="#classicos">Clássicos</a>
-            <a href="#cervejas">Cervejas</a>
-            <a href="#caipirinhas">Caipirinhas</a>
-            <a href="#doses-shots">Doses</a>
-            <a href="#petiscos">Petiscos</a>
-            <a href="#combos">Combos</a>
-            <a href="#bebidas">Bebidas</a>
-            <a href="#narguile">Narguilé</a>
-        </nav>
-
-        <!-- DRINKS DE AUTOR -->
-        <div class="section" id="drinks-autor">
-            <div class="section-title">Drinks de Autor</div>
-            <div class="section-subtitle">Criações exclusivas da casa</div>
-            <div class="divider"></div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Strawberry Gin</span>
-                <span class="item-dots"></span>
-                <span class="item-price">39,90</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, morango, limão, tônica</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 G-Mint</span>
-                <span class="item-dots"></span>
-                <span class="item-price">41,90</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, abacaxi, xarope de menta, limão, tônica</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Serenata de Morango</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,90</span>
-            </div>
-            <div class="item-desc">Gin, morango, leite condensado, limão, ice de limão</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Serenata de Maracujá</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,90</span>
-            </div>
-            <div class="item-desc">Gin, maracujá, leite condensado, laranja, ice de limão</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Sublime Ice</span>
-                <span class="item-dots"></span>
-                <span class="item-price">43,90</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, limão, grenadine, Sprite, espuma de limão-siciliano</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Purple Rain</span>
-                <span class="item-dots"></span>
-                <span class="item-price">37,00</span>
-            </div>
-            <div class="item-desc">Vodka, blue curaçao, limão, grenadine</div>
-
-            <div class="item">
-                <span class="item-name">𐃯 Caipirona</span>
-                <span class="item-dots"></span>
-                <span class="item-price">38,00</span>
-            </div>
-            <div class="item-desc">Cachaça, limão, açúcar, Corona</div>
-        </div>
-
-        <!-- CLÁSSICOS -->
-        <div class="section" id="classicos">
-            <div class="section-title">Clássicos & Variações</div>
-            <div class="divider"></div>
-
-            <div class="item">
-                <span class="item-name">Aperol Spritz</span>
-                <span class="item-dots"></span>
-                <span class="item-price">34,00</span>
-            </div>
-            <div class="item-desc">Aperol, espumante, água com gás, laranja</div>
-          
-            <div class="item">
-                <span class="item-name">Gin Tônica Clássico</span>
-                <span class="item-dots"></span>
-                <span class="item-price">36,00</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, água tônica, laranja</div>
-
-            <div class="item">
-                <span class="item-name">Gin Tropical</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,00</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, laranja, Red Bull Tropical</div>
-
-            <div class="item">
-                <span class="item-name">Gin Melancita</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,00</span>
-            </div>
-            <div class="item-desc">Gin Tanqueray, morango, Red Bull Melancia</div>
-        </div>
-
-        <!-- CERVEJAS -->
-        <div class="section" id="cervejas">
-            <div class="section-title">Cervejas</div>
-            <div class="divider"></div>
-
-            <div class="section-label">600ml</div>
-            <div class="item">
-                <span class="item-name">Heineken</span>
-                <span class="item-dots"></span>
-                <span class="item-price">19,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Original</span>
-                <span class="item-dots"></span>
-                <span class="item-price">17,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Amstel</span>
-                <span class="item-dots"></span>
-                <span class="item-price">15,00</span>
-            </div>
-
-            <div class="section-label">Long Neck</div>
-            <div class="item">
-                <span class="item-name">Corona</span>
-                <span class="item-dots"></span>
-                <span class="item-price">14,99</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Corona Zero</span>
-                <span class="item-dots"></span>
-                <span class="item-price">14,99</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Heineken</span>
-                <span class="item-dots"></span>
-                <span class="item-price">13,99</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Heineken Zero</span>
-                <span class="item-dots"></span>
-                <span class="item-price">13,99</span>
-            </div>
-        </div>
-
-                <!-- CAIPIRINHAS -->
-        <div class="section" id="caipirinhas">
-            <div class="section-title">Caipirinhas</div>
-            <div class="section-subtitle">Escolha sua base</div>
-            <div class="divider"></div>
-
-            <table class="menu-table">
-                <tr>
-                    <th></th>
-                    <th>Cachaça</th>
-                    <th>Saquê</th>
-                    <th>Vodka</th>
-                </tr>
-                <tr>
-                    <td>Limão</td>
-                    <td>29,99</td>
-                    <td>31,99</td>
-                    <td>30,99 🍸</td>
-                </tr>
-                <tr>
-                    <td>Limão com Morango</td>
-                    <td>29,99</td>
-                    <td>31,99</td>
-                    <td>30,99 🍸</td>
-                </tr>
-                <tr>
-                    <td>Morango</td>
-                    <td>29,99</td>
-                    <td>31,99</td>
-                    <td>30,99 🍸</td>
-                </tr>
-                <tr>
-                    <td>Maracujá</td>
-                    <td>31,00</td>
-                    <td>33,00</td>
-                    <td>32,00 🍸</td>
-                </tr>
-            </table>
-
-                <!-- RODAPÉ DA TABELA COM ADICIONAL SMIRNOFF -->
-            <div style="text-align: left; margin-top: 18px; font-size: 11px; color: var(--gold); opacity: 0.8; padding-left: 8px;">
-                🍸 Smirnoff + R$ 2,00 (adicional)
-            </div>
-
-        <!-- DOSES E SHOTS -->
-        <div class="section" id="doses-shots">
-            <div class="section-title">Doses</div>
-            <div class="section-subtitle">150ml</div>
-            <div class="divider"></div>
-
-            <div class="item">
-                <span class="item-name">Gin Beefeater</span>
-                <span class="item-dots"></span>
-                <span class="item-price">39,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Gin Beefeater Pink</span>
-                <span class="item-dots"></span>
-                <span class="item-price">41,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Vodka Smirnoff</span>
-                <span class="item-dots"></span>
-                <span class="item-price">24,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Jack Daniel's</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Jack Daniel's Apple</span>
-                <span class="item-dots"></span>
-                <span class="item-price">44,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Johnnie Walker Black Label</span>
-                <span class="item-dots"></span>
-                <span class="item-price">48,00</span>
-            </div>
-            <div class="item-desc" style="text-align:center; margin: 12px 0;">Adicione Red Bull à sua dose · +19,00</div>
-
-           <div class="section-label">Shots</div>
-
-<div class="item">
-    <span class="item-name">Tequila</span>
-    <span class="item-dots"></span>
-    <span class="item-price">15,00</span>
-</div>
-<div class="item-desc">Acompanha sal e limão</div>
-
-<div class="item">
-    <span class="item-name">Canelinha da Rocha</span>
-    <span class="item-dots"></span>
-    <span class="item-price">10,00</span>
-</div>
-
-<div class="item">
-    <span class="item-name">Bananazinha</span>
-    <span class="item-dots"></span>
-    <span class="item-price">12,00</span>
-</div>
-
-<div class="item">
-    <span class="item-name">Ballena</span>
-    <span class="item-dots"></span>
-    <span class="item-price">26,00</span>
-</div>
-<div class="item-desc">Licor cremoso de tequila mexicana com creme de morango</div>
-
-<div class="item">
-    <span class="item-name">Licor 43</span>
-    <span class="item-dots"></span>
-    <span class="item-price">29,90</span>
-</div>
-
-<div class="nav-top">
-    <a href="#topo">↑ Topo</a>
-</div>
-
-    <!-- PÁGINA 2 - PETISCOS -->
-    <div class="page">
-        <!-- PETISCOS -->
-        <div class="section" id="petiscos">
-            <div class="section-title">Petiscos</div>
-            <div class="section-subtitle">Para compartilhar</div>
-            <div class="divider"></div>
-
-            <div class="item">
-                <span class="item-name">Batata Frita da Casa</span>
-                <span class="item-dots"></span>
-                <span class="item-price">32,00</span>
-            </div>
-            <div class="item-desc">Fininhas e crocantes. Acompanha molho especial da casa.</div>
-
-            <div class="item">
-                <span class="item-name">Dadinho de Tapioca</span>
-                <span class="item-dots"></span>
-                <span class="item-price">35,00</span>
-            </div>
-            <div class="item-desc">250g · Crocante por fora, macio por dentro. Acompanha sweet chilli.</div>
-
-            <div class="item">
-                <span class="item-name">Coxinha Sem Massa</span>
-                <span class="item-dots"></span>
-                <span class="item-price">35,00</span>
-            </div>
-            <div class="item-desc">6 unidades 100% frango desfiado, suculentas. Molho especial.</div>
-
-            <div class="item">
-                <span class="item-name">Bolinho de Pulled Pork</span>
-                <span class="item-dots"></span>
-                <span class="item-price">35,00</span>
-            </div>
-            <div class="item-desc">6 unidades crocantes com recheio artesanal de pulled pork. Molho especial.</div>
-
-            <div class="item">
-                <span class="item-name">Chicken Bites</span>
-                <span class="item-dots"></span>
-                <span class="item-price">42,00</span>
-            </div>
-            <div class="item-desc">500g de frango empanado, dourado e crocante. Acompanha sweet chilli.</div>
-
-            <div class="item">
-                <span class="item-name">Meia Batata + Meia Chicken</span>
-                <span class="item-dots"></span>
-                <span class="item-price">40,00</span>
-            </div>
-            <div class="item-desc">500g de frango empanado + 500g de batatas fritas. Acompanha sweet chilli.</div>
-
-            <div class="item">
-                <span class="item-name">Calabresa Acebolada</span>
-                <span class="item-dots"></span>
-                <span class="item-price">38,00</span>
-            </div>
-            <div class="item-desc">Calabresa grelhada com cebola salteada e vinagrete da casa.</div>
-
-            <div class="item">
-                <span class="item-name">Porção Mista</span>
-                <span class="item-dots"></span>
-                <span class="item-price">38,00</span>
-            </div>
-            <div class="item-desc">Fritas crocantes + calabresa acebolada. O melhor dos dois mundos.</div>
-        </div>
-
-        <div class="nav-top">
-            <a href="#topo">↑ Topo</a>
-        </div>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/935a53bc2e11fb8d.data_sdk.js" type="text/javascript" integrity="sha512-qr2oyPnEys1WebcOABaRh6hG77r5PWpqeWW6JTKbRJqly/INsfBi31CVNlTmHqjgeLpkVmmHZJUdxSx/32tOFQ=="></script>
+  <script src="/_sdk/6030e540d4419216.resizing_sdk.js" type="text/javascript" integrity="sha512-b5KWzyoXsbWP4smq4sftIi6Kts4YVBpBsz0BwCViwbBJkK64a3/Z6ZMdWA+qnplNcXw4mhZeqvQi3mOosiRJdA=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen">
+  <header class="relative h-64 overflow-hidden"><img data-template-id="hero-img" class="canva-image w-full h-full object-cover" loading="lazy">
+   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <h1 data-template-id="restaurant-name" class="canva-text font-display text-center text-white text-5xl font-bold">SUBLIME BAR</h1>
+   </div>
+  </header>
+  <nav id="category-nav" class="sticky top-0 z-50 bg-white shadow-md">
+   <div class="nav-scroll flex overflow-x-auto gap-2 p-3"><button class="category-btn active shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="entradinha">Entradinha</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="porcoes">Porções</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="bolinhos">Bolinhos</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="carnivoros">Carnívoros</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="cervejas">Cervejas</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="baldes">Baldes</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="sem-alcool">Sem Álcool</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="garrafas">Garrafas</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="combos">Combos</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="casadinhos">Casadinhos</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="doses">Doses</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="shots">Shots</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="drinks">Drinks</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="gin-tonica">Gin &amp; Tônica</button> <button class="category-btn shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-teal-600 transition" data-target="caipirinhas">Caipirinhas</button>
+   </div>
+  </nav>
+  <main class="max-w-4xl mx-auto px-4 py-6 space-y-10"><!-- ENTRADINHA -->
+   <section id="entradinha">
+    <h2 data-template-id="sec-entradinha" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Entradinha</h2>
+    <div class="space-y-3">
+     <div class="flex justify-between">
+      <div>
+       <span class="font-medium">Couvert Meu Lugar</span><br><span class="text-sm text-gray-500">Azeitonas temperadas ou amendoim torrado</span>
+      </div><span class="font-bold text-teal-700"></span>
+     </div>
     </div>
-
-    <!-- PÁGINA 3 - COMBOS -->
-    <div class="page">
-        <div class="section" id="combos">
-            <div class="section-title">Combos</div>
-            <div class="section-subtitle">Experiências completas</div>
-            <div class="divider"></div>
-
-            <div class="combo-group">
-                <div class="combo-group-title">🍸 Gin + Energético + Bandeja de frutas</div>
-                <div class="item">
-                    <span class="item-name">Tanqueray London + 4 Red Bull</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">354,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Beefeater + 4 Red Bull</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">335,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Beefeater Pink + 4 Red Bull</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">354,00</span>
-                </div>
-            </div>
-
-            <div class="combo-group">
-                <div class="combo-group-title">🍸 Gin + Tônica + Bandeja de frutas</div>
-                <div class="item">
-                    <span class="item-name">Tanqueray London + 4 Tônicas</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">265,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Beefeater + 4 Tônicas</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">250,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Beefeater Pink + 4 Tônicas</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">265,00</span>
-                </div>
-            </div>
-
-            <div class="combo-group">
-                <div class="combo-group-title">🥃 Whisky + Energético + Gelo saborizado</div>
-                <div class="item">
-                    <span class="item-name">Jack Daniel's + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">359,90</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Jack Daniel's Apple + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">405,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Black Label + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">460,00</span>
-                </div>
-            </div>
-
-            <div class="combo-group">
-                <div class="combo-group-title">🍹 Vodka + Energético + Bandeja de frutas + Gelo saborizado</div>
-                <div class="item">
-                    <span class="item-name">Grey Goose + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">385,00</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Smirnoff + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">184,90</span>
-                </div>
-                <div class="item">
-                    <span class="item-name">Askov + 5 Energéticos</span>
-                    <span class="item-dots"></span>
-                    <span class="item-price">149,90</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="nav-top">
-            <a href="#topo">↑ Topo</a>
-        </div>
+   </section><!-- PORÇÕES -->
+   <section id="porcoes">
+    <h2 data-template-id="sec-porcoes" class="canva-text font-display text-2xl mb-2 pb-2 border-b-2 border-teal-500">Porções</h2><img data-template-id="porcoes-img" class="canva-image w-full h-48 object-cover rounded-xl mb-4" loading="lazy">
+    <div class="space-y-3 text-sm">
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Batata Frita da Casa</span><br><span class="text-gray-500">Fininhas e crocantes. Acompanha molho especial da casa.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$32,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Dadinho de Tapioca</span><br><span class="text-gray-500">250g · Crocante por fora, macio por dentro. Acompanha sweet chilli.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$35,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Coxinha Sem Massa</span><br><span class="text-gray-500">6 unidades · 100% frango desfiado, suculentas. Molho especial.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$35,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Bolinho de Pulled Pork</span><br><span class="text-gray-500">6 unidades crocantes com recheio artesanal de pulled pork. Molho especial.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$35,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Chicken Bites</span><br><span class="text-gray-500">500g de frango empanado, dourado e crocante. Acompanha sweet chilli.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$42,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Meia Batata + Meia Chicken</span><br><span class="text-gray-500">500g de frango empanado + 500g de batatas fritas. Acompanha sweet chilli.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$40,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Calabresa Acebolada</span><br><span class="text-gray-500">Calabresa grelhada com cebola salteada e vinagrete da casa.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$38,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Porção Mista</span><br><span class="text-gray-500">Fritas crocantes + calabresa acebolada. O melhor dos dois mundos.</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2">R$38,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Fritas Furious</span><br><span class="text-gray-500">Fritas finalizadas com tempero hot à base de páprica</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Tartufritas</span><br><span class="text-gray-500">Fritas finalizadas com parmesão, azeite de trufa, pimenta do reino</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">A do Meu Lugar</span><br><span class="text-gray-500">Fritas cobertas com cheddar, bacon, catupiry ou cheddar</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Guacamole Meu Lugar</span><br><span class="text-gray-500">Deliciosa guacamole acompanhada de nachos</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Chicken Popcorn</span><br><span class="text-gray-500">Cubos de frango empanados com Doritos ou molho tártaro</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Missô Chicken</span><br><span class="text-gray-500">Iscas de frango marinado no missô e mel, empanadas com panko e gergelim</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Porções de Pastel</span><br><span class="text-gray-500">8 pastéis de sabor sortido e Nutella</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Polenta c/ Lula Provençal</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Burrata</span><br><span class="text-gray-500">Acompanha tomate confit, presunto cru e pesto</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Tilápia Maçaricada</span><br><span class="text-gray-500">Iscas de tilápia grelhada no maçarico com molho tarê, gengibre, alho e azeite trufado</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Lulita</span><br><span class="text-gray-500">Lula nacional marinada, acompanha torrada de pão rústico</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Salada Caesar</span><br><span class="text-gray-500">Alface americana, crouton, parmesão, frango em cubos e molho caesar</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Salada Meu Lugar</span><br><span class="text-gray-500">Alface americana, rúcula, frango grelhado, cebola roxa, tomate confit, finalizada com Doritos</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Flauvita</span><br><span class="text-gray-500">Massa de pastel recheada de muçarela com crosta de panko e parmesão, acompanha molho sweet chili</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
     </div>
-
-    <!-- PÁGINA 4 - BEBIDAS E NARGUILÉ -->
-    <div class="page">
-        <!-- BEBIDAS NÃO ALCOÓLICAS -->
-        <div class="section" id="bebidas">
-            <div class="section-title">Bebidas</div>
-            <div class="section-subtitle">Refrescantes e energéticos</div>
-            <div class="divider"></div>
-
-            <div class="item">
-                <span class="item-name">Água Mineral</span>
-                <span class="item-dots"></span>
-                <span class="item-price">6,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Água com Gás</span>
-                <span class="item-dots"></span>
-                <span class="item-price">6,90</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Água Tônica</span>
-                <span class="item-dots"></span>
-                <span class="item-price">8,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Del Valle (Lata)</span>
-                <span class="item-dots"></span>
-                <span class="item-price">9,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Refrigerante (Lata)</span>
-                <span class="item-dots"></span>
-                <span class="item-price">8,00</span>
-            </div>
-            <div class="item-desc">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</div>
-            
-            <div class="item">
-                <span class="item-name">Red Bull</span>
-                <span class="item-dots"></span>
-                <span class="item-price">19,00</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Smirnoff Ice</span>
-                <span class="item-dots"></span>
-                <span class="item-price">15,99</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Skol Beats</span>
-                <span class="item-dots"></span>
-                <span class="item-price">15,99</span>
-            </div>
-            <div class="item">
-                <span class="item-name">Xeque Mate</span>
-                <span class="item-dots"></span>
-                <span class="item-price">20,00</span>
-            </div>
-            <div class="item-desc">Servido em copo de 500ml com gelo e limão</div>
-        </div>
-
-        <!-- NARGUILÉ -->
-        <div class="section" id="narguile">
-            <div class="section-title">Narguilé</div>
-            <div class="section-subtitle">Momento de relaxar</div>
-            <div class="divider"></div>
-            <div class="item">
-                <span class="item-name">Sessão completa</span>
-                <span class="item-dots"></span>
-                <span class="item-price">30,00</span>
-            </div>
-            <div class="essencias">
-                🍓 Morango & Laranja · 🍬 Tutti Frutti · 🍎 Duas Maçãs · 🍇 Frutas Roxas · 🍏 Frutas Verdes · 🍉 Melancia · 🌿 Fresh Passion · 🍋 Yellow · 🌱 Menta
-            </div>
-        </div>
-
-        <div class="footer">
-            🍸 Consumo consciente · Aprecie com moderação 🍸
-        </div>
-
-        <div class="nav-top">
-            <a href="#topo">↑ Topo</a>
-        </div>
+   </section><!-- BOLINHOS -->
+   <section id="bolinhos">
+    <h2 data-template-id="sec-bolinhos" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Bolinhos</h2>
+    <p class="text-sm text-gray-500 mb-3">8 unidades</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+     <div class="flex justify-between">
+      <span>Catupiry empanado</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de pepperoni</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Supreme de provolone</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de salmão</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de feijoada</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de carne seca</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de camarão</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de costela</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bolinho de arroz</span><span class="font-bold text-teal-700"></span>
+     </div>
     </div>
+   </section><!-- CARNÍVOROS -->
+   <section id="carnivoros">
+    <h2 data-template-id="sec-carnivoros" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Carnívoros</h2>
+    <div class="space-y-3 text-sm">
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Fraldinha 4 Queijos</span><br><span class="text-gray-500">Grelhada com molho 4 queijos, acompanha média</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Fraldinha Gorgonzola</span><br><span class="text-gray-500">Grelhada finalizada com gorgonzola e molho sweet chili</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Linguiça Meu Lugar</span><br><span class="text-gray-500">Linguiça artesanal coberta com queijo gratinado, acompanha farofa, vinagrete e média</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Tábua de Churrasco</span><br><span class="text-gray-500">Carne, frango, linguiça, pão de alho, farofa e vinagrete</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Frango Meu Lugar</span><br><span class="text-gray-500">Grelhado finalizado com catupiry, acompanha torrada de pão rústico</span>
+      </div><span class="font-bold text-teal-700 whitespace-nowrap ml-2"></span>
+     </div>
+    </div>
+   </section><!-- CERVEJAS -->
+   <section id="cervejas">
+    <h2 data-template-id="sec-cervejas" class="canva-text font-display text-2xl mb-2 pb-2 border-b-2 border-teal-500">Cervejas</h2><img data-template-id="cervejas-img" class="canva-image w-full h-48 object-cover rounded-xl mb-4" loading="lazy">
+    <h3 class="font-bold mb-2">Long Neck</h3>
+    <div class="grid grid-cols-2 gap-1 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Heineken</span><span class="font-bold text-teal-700">R$13,99</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Heineken Zero</span><span class="font-bold text-teal-700">R$13,99</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Corona</span><span class="font-bold text-teal-700">R$14,99</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Corona Zero</span><span class="font-bold text-teal-700">R$14,99</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel</span><span class="font-bold text-teal-700">R$15,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Original</span><span class="font-bold text-teal-700">R$17,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel Ultra</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Praya</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Sol</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+    <h3 class="font-bold mb-2">600ml</h3>
+    <div class="grid grid-cols-2 gap-1 text-sm">
+     <div class="flex justify-between">
+      <span>Heineken</span><span class="font-bold text-teal-700">R$19,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Original</span><span class="font-bold text-teal-700">R$17,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel</span><span class="font-bold text-teal-700">R$15,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Eisenbahn</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+   </section><!-- BALDES -->
+   <section id="baldes">
+    <h2 data-template-id="sec-baldes" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Baldes</h2>
+    <h3 class="font-bold mb-2">Long Neck (4 unidades)</h3>
+    <div class="grid grid-cols-2 gap-1 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Corona</span><span class="font-bold text-teal-700">R$55,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Heineken</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Heineken Zero</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel Ultra</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Praya</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Sol</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+    <h3 class="font-bold mb-2">600ml (4 unidades)</h3>
+    <div class="grid grid-cols-2 gap-1 text-sm">
+     <div class="flex justify-between">
+      <span>Heineken</span><span class="font-bold text-teal-700">R$69,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Original</span><span class="font-bold text-teal-700">R$62,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Amstel</span><span class="font-bold text-teal-700">R$55,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Eisenbahn</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+   </section><!-- BEBIDAS SEM ÁLCOOL -->
+   <section id="sem-alcool">
+    <h2 data-template-id="sec-sem-alcool" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Bebidas</h2>
+    <div class="space-y-2 text-sm">
+     <div class="flex justify-between">
+      <span>Água Mineral</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Água com Gás</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Água Tônica</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Del Valle (Lata)</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span>Refrigerante (Lata)</span><br><span class="text-gray-500">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff Ice</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Skol Beats</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Xeque Mate</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Schweppes Tônica</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Schweppes Tônica Zero</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Água de Coco Lynv</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Sprite Lemon Fresh</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span>Suco Natural</span><br><span class="text-gray-500">Laranja, limão, abacaxi, maracujá</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Soda Italiana</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span>Red Bull (Edições especiais)</span><br><span class="text-gray-500">Sugar Free, Tropical Edition, Melancia Edition, Pomelo Edition Sugar Free, Mello Edition, Summer Edition Nectarina Sugarfree</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span>Gelo de Sabor</span><br><span class="text-gray-500">Coco, maracujá, melancia</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+    </div>
+   </section><!-- GARRAFAS -->
+   <section id="garrafas">
+    <h2 data-template-id="sec-garrafas" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Garrafas</h2>
+    <p class="text-sm text-gray-500 mb-3">Venda fechada, sem acompanhamento</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+     <div class="flex justify-between">
+      <span>Gin Beefeater Pink</span><span class="font-bold text-teal-700">R$289,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Beefeater Tradicional</span><span class="font-bold text-teal-700">R$269,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Tanqueray London</span><span class="font-bold text-teal-700">R$289,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Johnnie Walker Black Label 1L</span><span class="font-bold text-teal-700">R$379,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's Tradicional 1L</span><span class="font-bold text-teal-700">R$279,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's Apple 1L</span><span class="font-bold text-teal-700">R$319,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Grey Goose</span><span class="font-bold text-teal-700">R$319,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Vodka Smirnoff</span><span class="font-bold text-teal-700">R$109,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Vodka Askov</span><span class="font-bold text-teal-700">R$79,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff</span><span class="font-bold text-teal-700">R$250,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Gordon's</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Gordon's Pink</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc Red</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Red Label</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gold Label</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Blue Label</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Royal Salute</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Chivas 12 Anos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's Especiais</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jägermeister</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena Chocolate</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena Coco</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bananinha</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tequila Prata</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tequila Ouro</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Licor 43</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+   </section><!-- COMBOS -->
+   <section id="combos">
+    <h2 data-template-id="sec-combos" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Combos</h2>
+    <h3 class="font-bold mb-2">Gin + Energético + Bandeja de Frutas</h3>
+    <div class="space-y-2 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Tanqueray London + 4 Red Bull</span><span class="font-bold text-teal-700">R$354,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Beefeater + 4 Red Bull</span><span class="font-bold text-teal-700">R$335,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Beefeater Pink + 4 Red Bull</span><span class="font-bold text-teal-700">R$354,00</span>
+     </div>
+    </div>
+    <h3 class="font-bold mb-2">Gin + Tônica + Bandeja de Frutas</h3>
+    <div class="space-y-2 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Tanqueray London + 4 Tônicas</span><span class="font-bold text-teal-700">R$265,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Beefeater + 4 Tônicas</span><span class="font-bold text-teal-700">R$250,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Beefeater Pink + 4 Tônicas</span><span class="font-bold text-teal-700">R$265,00</span>
+     </div>
+    </div>
+    <h3 class="font-bold mb-2">Whisky + Energético + Gelo Saborizado</h3>
+    <div class="space-y-2 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Jack Daniel's + 5 Energéticos</span><span class="font-bold text-teal-700">R$359,90</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's Apple + 5 Energéticos</span><span class="font-bold text-teal-700">R$405,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Black Label + 5 Energéticos</span><span class="font-bold text-teal-700">R$460,00</span>
+     </div>
+    </div>
+    <h3 class="font-bold mb-2">Vodka + Energético + Bandeja de Frutas + Gelo Saborizado</h3>
+    <div class="space-y-2 text-sm mb-4">
+     <div class="flex justify-between">
+      <span>Grey Goose + 5 Energéticos</span><span class="font-bold text-teal-700">R$385,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff + 5 Energéticos</span><span class="font-bold text-teal-700">R$184,90</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Askov + 5 Energéticos</span><span class="font-bold text-teal-700">R$149,90</span>
+     </div>
+    </div>
+    <h3 data-template-id="sec-combos-especiais" class="canva-text font-display text-xl mt-6 mb-3">Combos Especiais</h3>
+    <div class="space-y-2 text-sm">
+     <div class="flex justify-between">
+      <span>Royal Salute + 6 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc Sabores + 4 Red Bull ou 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Absolut Sabores + 4 Red Bull ou 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Grey Goose Sabores + 4 Red Bull ou 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Dionísio Vodka + 4 Red Bull ou 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff + 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc + 4 Redbull ou 4 Sucos</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc Red + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tanqueray + 4 Red Bull Tropical</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Gordon's + 4 Tônicas</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Gordon's Pink + 4 Tônicas</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack (Honey, Fire ou Apple) + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Red Label + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Black Label + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gold Label + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Chivas 12 Anos + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Buchanan's + 4 Red Bull</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+   </section><!-- CASADINHOS -->
+   <section id="casadinhos">
+    <h2 data-template-id="sec-casadinhos" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Casadinhos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+     <div class="bg-teal-50 rounded-xl p-4 text-center">
+      <span class="font-medium">2 Doses Vodka Nacional + Red Bull</span><br><span class="font-bold text-teal-700 text-lg"></span>
+     </div>
+     <div class="bg-teal-50 rounded-xl p-4 text-center">
+      <span class="font-medium">2 Doses Whisky Red Label + Red Bull</span><br><span class="font-bold text-teal-700 text-lg"></span>
+     </div>
+     <div class="bg-teal-50 rounded-xl p-4 text-center">
+      <span class="font-medium">2 Doses Gin Nacional + Red Bull</span><br><span class="font-bold text-teal-700 text-lg"></span>
+     </div>
+    </div>
+   </section><!-- DOSES -->
+   <section id="doses">
+    <h2 data-template-id="sec-doses" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Doses · 150ml</h2>
+    <div class="grid grid-cols-2 gap-1 text-sm">
+     <div class="flex justify-between">
+      <span>Gin Beefeater</span><span class="font-bold text-teal-700">R$39,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Beefeater Pink</span><span class="font-bold text-teal-700">R$41,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Vodka Smirnoff</span><span class="font-bold text-teal-700">R$24,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's</span><span class="font-bold text-teal-700">R$42,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Daniel's Apple</span><span class="font-bold text-teal-700">R$44,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Johnnie Walker Black Label</span><span class="font-bold text-teal-700">R$48,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Dionísio Vodka</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Absolut</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ciroc</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tanqueray</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Gin Gordon's</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Red Label</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Black Label</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Fire</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jack Honey</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Chivas 12</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jameson</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+    <p class="text-sm text-gray-500 mt-3">Adicione Red Bull à sua dose · +R$19,00</p>
+   </section><!-- SHOTS -->
+   <section id="shots">
+    <h2 data-template-id="sec-shots" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Shots</h2>
+    <div class="grid grid-cols-2 gap-1 text-sm">
+     <div class="flex justify-between">
+      <span>Tequila</span><span class="font-bold text-teal-700">R$15,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Canelinha da Rocha</span><span class="font-bold text-teal-700">R$10,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Bananazinha</span><span class="font-bold text-teal-700">R$12,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena</span><span class="font-bold text-teal-700">R$26,00</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Licor 43</span><span class="font-bold text-teal-700">R$29,90</span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tequila Ouro</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Tequila Prata</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena Chocolate</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Ballena Coco</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Jägermeister</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+    <p class="text-sm text-gray-500 mt-3">Tequila acompanha sal e limão · Licor cremoso de tequila mexicana com creme de morango</p>
+    <h3 data-template-id="sec-pronto-beber" class="canva-text font-display text-xl mt-6 mb-3">Pronto para Beber</h3>
+    <div class="space-y-1 text-sm">
+     <div class="flex justify-between">
+      <span>Skol Beats Senses</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Skol Beats Red</span><span class="font-bold text-teal-700"></span>
+     </div>
+     <div class="flex justify-between">
+      <span>Smirnoff Ice</span><span class="font-bold text-teal-700"></span>
+     </div>
+    </div>
+   </section><!-- DRINKS -->
+   <section id="drinks">
+    <h2 data-template-id="sec-drinks-trad" class="canva-text font-display text-2xl mb-2 pb-2 border-b-2 border-teal-500">Drinks de Autor</h2><img data-template-id="drinks-img" class="canva-image w-full h-48 object-cover rounded-xl mb-4" loading="lazy">
+    <div class="space-y-2 text-sm">
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Strawberry Gin</span><br><span class="text-gray-500">Gin Tanqueray, morango, limão, tónica</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$39,90</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">G-Mint</span><br><span class="text-gray-500">Gin Tanqueray, abacaxi, xarope de menta, limão, tónica</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$41,90</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Serenata de Morango</span><br><span class="text-gray-500">Gin, morango, leite condensado, limão, ice de limão</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$42,90</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Serenata de Maracujá</span><br><span class="text-gray-500">Gin, maracujá, leite condensado, laranja, ice de limão</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$42,90</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Sublime Ice</span><br><span class="text-gray-500">Gin Tanqueray, limão, grenadine, Sprite, espuma de limão-siciliano</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$43,90</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Purple Rain</span><br><span class="text-gray-500">Vodka, blue curaçao, limão, grenadine</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$37,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Caipirona</span><br><span class="text-gray-500">Cachaça, limão, açúcar, Corona</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$38,00</span>
+     </div>
+    </div>
+    <h3 data-template-id="sec-drinks-esp" class="canva-text font-display text-xl mt-6 mb-3">Clássicos & Variações</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Aperol Spritz</span><br><span class="text-gray-500">Aperol, espumante, água com gás, laranja</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$34,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Gin Tônica Clássico</span><br><span class="text-gray-500">Gin Tanqueray, água tônica, laranja</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$36,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Gin Tropical</span><br><span class="text-gray-500">Gin Tanqueray, laranja, Red Bull Tropical</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$42,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Gin Melancita</span><br><span class="text-gray-500">Gin Tanqueray, morango, Red Bull Melancita</span>
+      </div><span class="font-bold text-teal-700 ml-2">R$42,00</span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Margarita</span><br><span class="text-gray-500">Tequila, licor de laranja, suco de limão e xarope de açúcar</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Mojito</span><br><span class="text-gray-500">Opções: Limão, maracujá, uva verde</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Amor na Praia</span><br><span class="text-gray-500">O clássico sex on the beach. Vodka, licor de pêssego, laranja e xarope de frutas vermelhas</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Moscow Mule</span><br><span class="text-gray-500"></span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">O Queridinho</span><br><span class="text-gray-500">Licor 43 e suco de abacaxi</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Campari 43</span><br><span class="text-gray-500">Licor 43, campari e suco de maracujá</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Campari Tonic</span><br><span class="text-gray-500">Campari, tônica e limão</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Tequila Sunrise</span><br><span class="text-gray-500">Tequila prata, suco de laranja, suco de limão, xarope grenadine</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">43 Tropical</span><br><span class="text-gray-500">Licor 43, suco de laranja e red bull tropical</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Olhar 43</span><br><span class="text-gray-500">Licor 43, limão e tônica</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Caju Fire</span><br><span class="text-gray-500">Jack Daniel's Fire, caju, suco de limão e xarope de açúcar</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Nectarina Especiais Redbull</span><br><span class="text-gray-500">Vodka + Red Bull Summer Edition Nectarina Sugarfree</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Jack Coke</span><br><span class="text-gray-500">Jack Daniel's, Coca-Cola e limão</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Jack Tennessee</span><br><span class="text-gray-500">Jack Daniel's, tônica, xarope de maracujá, limão espremido</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Jack Apple</span><br><span class="text-gray-500">Jack Daniel's Apple, limão siciliano e canela</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Jack Fire</span><br><span class="text-gray-500">Jack Daniel's Fire, maracujá, mel e citrus</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Jack Honey</span><br><span class="text-gray-500">Jack Daniel's Honey, água de coco, limão espremido e coco ralado</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+     <div class="flex justify-between items-start">
+      <div>
+       <span class="font-medium">Negroni</span><br><span class="text-gray-500">Campari, gin e vermouth doce</span>
+      </div><span class="font-bold text-teal-700 ml-2"></span>
+     </div>
+    </div>
+   </section><!-- GIN & TÔNICA -->
+   <section id="gin-tonica">
+    <h2 data-template-id="sec-gin-tonica" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Gin & Tônica</h2>
+    <p class="text-sm mb-1"><strong>Nacional R$26,90</strong> | <strong>Importado R$32,90</strong></p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm mt-3">
+     <div>
+      <span class="font-medium">Tropical Gin - Especial Redbull</span><br><span class="text-gray-500">Gin, maracujá e Red Bull Tropical Edition</span>
+     </div>
+     <div>
+      <span class="font-medium">Purple Gin - Especiais Redbull</span><br><span class="text-gray-500">Gin e Red Bull Pomelo Edition Sugarfree</span>
+     </div>
+     <div>
+      <span class="font-medium">Melancita - Especiais Redbull</span><br><span class="text-gray-500">Gin, limão, tônica e Red Bull Melancia Edition</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin de Vinho</span><br><span class="text-gray-500">Gin, limão espremido, tônica, vinho tinto e espuma de gengibre</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Pitaya</span><br><span class="text-gray-500">Gin, tônica, purê de pitaya rosa e espuma de coco queimado</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Melancia</span><br><span class="text-gray-500">Gin, tônica, xarope de melancia</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Maçã Verde</span><br><span class="text-gray-500">Gin, tônica, xarope de maçã verde</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Tangerina</span><br><span class="text-gray-500">Gin, tônica, xarope de tangerina</span>
+     </div>
+     <div>
+      <span class="font-medium">Arco-Íris</span><br><span class="text-gray-500">Gin, tônica, limão siciliano e algodão doce</span>
+     </div>
+     <div>
+      <span class="font-medium">G&amp;T</span><br><span class="text-gray-500">Gin, tônica, rodelas de limão siciliano, alecrim e zimbro</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Mule</span><br><span class="text-gray-500">Gin, tônica, manga e espuma de manga</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Cranberry</span><br><span class="text-gray-500">Gin, tônica e xarope de cranberry</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Kiwi</span><br><span class="text-gray-500">Gin, tônica e xarope de kiwi</span>
+     </div>
+     <div>
+      <span class="font-medium">Gin Blueberry</span><br><span class="text-gray-500">Gin, tônica e xarope de blueberry</span>
+     </div>
+    </div>
+   </section><!-- CAIPIRINHAS -->
+   <section id="caipirinhas">
+    <h2 data-template-id="sec-caipirinhas" class="canva-text font-display text-2xl mb-4 pb-2 border-b-2 border-teal-500">Caipirinhas</h2>
+    <p class="text-sm mb-3">Escolha sua base: Cachaça · Saqué · Vodka</p>
+    <div class="text-sm mb-3">
+     <p class="font-medium">Limão: <span class="font-bold">Cachaça R$29,99</span> · <span class="font-bold">Saqé R$31,99</span> · <span class="font-bold">Vodka R$30,99</span></p>
+     <p class="font-medium">Limão com Morango: <span class="font-bold">Cachaça R$29,99</span> · <span class="font-bold">Saqé R$31,99</span> · <span class="font-bold">Vodka R$30,99</span></p>
+     <p class="font-medium">Morango: <span class="font-bold">Cachaça R$29,99</span> · <span class="font-bold">Saqé R$31,99</span> · <span class="font-bold">Vodka R$30,99</span></p>
+     <p class="font-medium">Maracujá: <span class="font-bold">Cachaça R$31,00</span> · <span class="font-bold">Saqé R$33,00</span> · <span class="font-bold">Vodka R$32,00</span></p>
+    </div>
+    <p class="text-sm text-gray-500 mb-3">Vodka Smirnoff + R$2,00 (adicional)</p>
+    <p class="text-sm font-medium mb-2">Sabores:</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+     <div>
+      <span class="font-medium">Maracujá</span><br><span class="text-gray-500">Destilado, maracujá e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Caju</span><br><span class="text-gray-500">Destilado, caju e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Kiwi</span><br><span class="text-gray-500">Destilado, kiwi e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Tangerina</span><br><span class="text-gray-500">Destilado, tangerina e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Uva Verde</span><br><span class="text-gray-500">Destilado, uva verde sem caroço e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Limão</span><br><span class="text-gray-500">Destilado, limão e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Abacaxi</span><br><span class="text-gray-500">Destilado, abacaxi e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Morango</span><br><span class="text-gray-500">Destilado, morango e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Frutas Vermelhas</span><br><span class="text-gray-500">Destilado, frutas vermelhas e xarope de açúcar</span>
+     </div>
+     <div>
+      <span class="font-medium">Limão + Rapadura</span><br><span class="text-gray-500">Destilado, limão e rapadura</span>
+     </div>
+     <div>
+      <span class="font-medium">Caipijack</span><br><span class="text-gray-500">Jack Daniel's, limão ou maracujá e xarope de açúcar</span>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer data-template-id="footer-section" class="canva-footer text-center py-6 mt-8">
+   <p data-template-id="footer-text" class="canva-text text-sm text-gray-500">Consumo consciente · Aprecie com moderação</p>
+  </footer>
+  <script src="/_sdk/b23f1f6ec78e9bd4.editing_sdk.js" integrity="sha512-WFdQutvUZzxrmcHkL8cbfuFDTeF8Cn8Bt3yqX/a/OdiqPz/t9UcjsIsZK7D+tMTmC2JTwhwRJNyfcHmIWhG8Wg=="></script>
+  <script>
+        const navBtns = document.querySelectorAll('.category-btn');
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const target = document.getElementById(btn.dataset.target);
+                if (target) {
+                    const navH = document.getElementById('category-nav').offsetHeight;
+                    const top = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
 
-</body>
+        // Update active tab on scroll
+        const sections = document.querySelectorAll('main > section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    const btn = document.querySelector(`.category-btn[data-target="${entry.target.id}"]`);
+                    if (btn) btn.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-40% 0px -50% 0px' });
+        sections.forEach(s => observer.observe(s));
+    </script>
+ </body>
 </html>

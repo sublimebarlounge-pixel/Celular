@@ -29,7 +29,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-slate-900/90 z-10"></div>
     <div class="relative z-20 text-center px-4">
       <h1 class="font-display text-4xl sm:text-5xl font-extrabold tracking-wide text-white mb-2">SUBLIME BAR</h1>
-      <p class="text-teal-200 text-sm sm:text-base font-medium tracking-wider uppercase">Sua noite, seu brinde, seu momento sublime</p>
+      <p class="text-teal-200 text-sm sm:text-base font-medium tracking-wider uppercase">Sua melhor noite é aqui</p>
       <div class="w-16 h-1 bg-teal-400 mx-auto mt-3 rounded-full"></div>
     </div>
   </header>
@@ -134,62 +134,82 @@
       </div>
     </section>
 
-    <!-- 4 - CERVEJAS E BALDES -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
-      <div>
-        <h2 class="font-display text-3xl font-bold brand-color text-center pb-2 mb-6">CERVEJAS</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative items-center">
-          <div class="bg-white rounded-lg p-4">
-            <h3 class="text-xl font-black text-slate-800 mb-4">Long Neck</h3>
-            <div class="space-y-1 text-sm font-bold">
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>AMSTEL</span><span class="text-slate-700">R$15,90</span></div>
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>AMSTEL ULTRA</span><span class="text-slate-700">R$15,90</span></div>
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>HEINEKEN</span><span class="text-slate-700">R$16,90</span></div>
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>HEINEKEN ZERO</span><span class="text-slate-700">R$16,90</span></div>
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>PRAYA</span><span class="text-slate-700">R$15,90</span></div>
-              <div class="flex justify-between py-1"><span>SOL</span><span class="text-slate-700">R$15,90</span></div>
+    <!-- 4 - CERVEJAS E BALDES (NOVO LAYOUT) -->
+    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-6 border-b-2 border-teal-500">CERVEJAS</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Coluna Esquerda: Garrafa 600ml + Long Neck -->
+        <div class="space-y-8">
+          <!-- Garrafa 600ml -->
+          <div>
+            <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider bg-slate-50 inline-block px-3 py-1.5 rounded-md mb-3">GARRAFA 600ML</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Heineken</span>
+                <span class="font-bold brand-color ml-4">R$ 19,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Original</span>
+                <span class="font-bold brand-color ml-4">R$ 17,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Amstel</span>
+                <span class="font-bold brand-color ml-4">R$ 15,00</span>
+              </div>
             </div>
           </div>
-          <div class="hidden md:flex justify-center items-center absolute left-1/2 -translate-x-1/2 z-10 w-40 h-64">
-            <div class="text-xs text-center text-slate-300">[AQUI ENTRA A IMAGEM<br>DAS GARRAFAS]</div>
-          </div>
-          <div class="bg-white rounded-lg p-4 md:pl-20">
-            <h3 class="text-xl font-black text-slate-800 mb-4">600ml</h3>
-            <div class="space-y-1 text-sm font-bold">
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>AMSTEL</span><span class="text-slate-700">R$19,90</span></div>
-              <div class="flex justify-between border-b border-slate-100 py-1"><span>EISENBAHN</span><span class="text-slate-700">R$19,90</span></div>
-              <div class="flex justify-between py-1"><span>HEINEKEN</span><span class="text-slate-700">R$22,90</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="bg-[#3ab8b5] rounded-xl p-6 text-white relative overflow-hidden">
-        <h2 class="font-display text-3xl font-bold text-center mb-6">BALDES</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative items-center">
-          <div class="p-4">
-            <h3 class="text-xl font-black mb-4">Long Neck</h3>
-            <div class="space-y-1 text-sm font-bold">
-              <div class="flex justify-between border-b border-white/20 py-1"><span>AMSTEL</span><span>R$75,00</span></div>
-              <div class="flex justify-between border-b border-white/20 py-1"><span>AMSTEL ULTRA</span><span>R$75,00</span></div>
-              <div class="flex justify-between border-b border-white/20 py-1"><span>HEINEKEN</span><span>R$80,00</span></div>
-              <div class="flex justify-between border-b border-white/20 py-1"><span>HEINEKEN ZERO</span><span>R$80,00</span></div>
-              <div class="flex justify-between border-b border-white/20 py-1"><span>PRAYA</span><span>R$75,00</span></div>
-              <div class="flex justify-between py-1"><span>SOL</span><span>R$75,00</span></div>
-            </div>
-          </div>
-          <div class="hidden md:flex justify-center items-center absolute left-1/2 -translate-x-1/2 z-10 w-48 h-64">
-             <div class="text-xs text-center text-white/50">[AQUI ENTRA A IMAGEM<br>DO BALDE]</div>
-          </div>
-          <div class="p-4 md:pl-20">
-            <h3 class="text-xl font-black mb-4">600ml</h3>
-            <div class="space-y-1 text-sm font-bold">
-              <div class="flex justify-between border-b border-white/20 py-1"><span>AMSTEL</span><span>R$55,00</span></div>
-              <div class="flex justify-between border-b border-white/20 py-1"><span>EISENBAHN</span><span>R$55,00</span></div>
-              <div class="flex justify-between py-1"><span>HEINEKEN</span><span>R$65,00</span></div>
+          <!-- Long Neck -->
+          <div>
+            <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider bg-slate-50 inline-block px-3 py-1.5 rounded-md mb-3">LONG NECK</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Corona</span>
+                <span class="font-bold brand-color ml-4">R$ 14,99</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Corona Zero</span>
+                <span class="font-bold brand-color ml-4">R$ 14,99</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Heineken</span>
+                <span class="font-bold brand-color ml-4">R$ 13,99</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                <span class="font-medium text-slate-800">Heineken Zero</span>
+                <span class="font-bold brand-color ml-4">R$ 13,99</span>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Coluna Direita: Baldes -->
+        <div class="bg-teal-50/60 p-6 rounded-2xl border border-teal-100/60 shadow-sm">
+          <h3 class="font-display text-2xl font-bold brand-color tracking-wide uppercase mb-1">BALDES</h3>
+          <p class="text-xs font-bold text-slate-700/80 uppercase tracking-wider mb-5 border-b border-teal-200/60 pb-2 inline-block">4 UNIDADES</p>
+          
+          <div class="space-y-4 text-sm">
+            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+              <span class="font-semibold text-slate-800">Heineken 600ml</span>
+              <span class="font-bold brand-color ml-4">R$ 69,00</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+              <span class="font-semibold text-slate-800">Original 600ml</span>
+              <span class="font-bold brand-color ml-4">R$ 62,00</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+              <span class="font-semibold text-slate-800">Amstel 600ml</span>
+              <span class="font-bold brand-color ml-4">R$ 55,00</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-slate-800">Corona Long Neck</span>
+              <span class="font-bold brand-color ml-4">R$ 55,00</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -289,60 +309,24 @@
       </div>
     </section>
 
-    <!-- 10 - BEBIDAS (Nova seção) -->
+    <!-- 10 - BEBIDAS -->
     <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
       <h2 class="font-display text-2xl font-bold brand-color pb-1 mb-4 border-b-2 border-teal-500">BEBIDAS</h2>
       <p class="text-slate-500 italic text-sm -mt-3 mb-6">Refrescantes e energéticos</p>
-      
       <div class="space-y-4">
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Mineral</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água com Gás</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,90</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Tônica</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 8,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Del Valle (Lata)</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 9,00</span></div>
         <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Água Mineral</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,00</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Água com Gás</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,90</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Água Tônica</span>
+          <div><span class="font-bold text-slate-800">Refrigerante (Lata)</span><p class="text-xs text-slate-500 mt-0.5">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</p></div>
           <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 8,00</span>
         </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Del Valle (Lata)</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 9,00</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <div>
-            <span class="font-bold text-slate-800">Refrigerante (Lata)</span>
-            <p class="text-xs text-slate-500 mt-0.5">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</p>
-          </div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 8,00</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Red Bull</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 19,00</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Smirnoff Ice</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span>
-        </div>
-        
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <span class="font-bold text-slate-800">Skol Beats</span>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span>
-        </div>
-        
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Red Bull</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 19,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Smirnoff Ice</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Skol Beats</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span></div>
         <div class="flex justify-between items-start">
-          <div>
-            <span class="font-bold text-slate-800">Xeque Mate</span>
-            <p class="text-xs text-slate-500 mt-0.5">Servido em copo de 500ml com gelo e limão</p>
-          </div>
+          <div><span class="font-bold text-slate-800">Xeque Mate</span><p class="text-xs text-slate-500 mt-0.5">Servido em copo de 500ml com gelo e limão</p></div>
           <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 20,00</span>
         </div>
       </div>

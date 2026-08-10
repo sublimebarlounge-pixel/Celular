@@ -7,7 +7,12 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'DM Sans', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    body { 
+      font-family: 'DM Sans', sans-serif; 
+      background-color: #f8fafc; 
+      color: #1e293b; 
+      -webkit-tap-highlight-color: transparent;
+    }
     .font-display { font-family: 'Playfair Display', serif; }
     .brand-color { color: #1a9b8f; }
     .bg-brand { background-color: #1a9b8f; }
@@ -15,6 +20,7 @@
     .text-gold { color: #d4af37; }
     .border-gold { border-color: #d4af37; }
 
+    /* Ajustes para impressão */
     @media print {
       .no-print { display: none !important; }
       body { background-color: #ffffff !important; }
@@ -25,334 +31,379 @@
 </head>
 <body class="min-h-screen pb-12">
 
-  <header class="relative h-48 sm:h-64 bg-slate-900 text-white flex items-center justify-center overflow-hidden mb-8 shadow-md">
+  <!-- Cabeçalho otimizado para mobile -->
+  <header class="relative h-44 sm:h-64 bg-slate-900 text-white flex items-center justify-center overflow-hidden mb-6 shadow-md">
     <div class="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-slate-900/90 z-10"></div>
-    <div class="relative z-20 text-center px-4">
-      <h1 class="font-display text-4xl sm:text-5xl font-extrabold tracking-wide text-white mb-2">SUBLIME BAR</h1>
+    <div class="relative z-20 text-center px-5">
+      <h1 class="font-display text-4xl sm:text-6xl font-extrabold tracking-wide text-white mb-1">SUBLIME BAR</h1>
       <p class="text-teal-200 text-sm sm:text-base font-medium tracking-wider uppercase">Sua melhor noite é aqui</p>
-      <div class="w-16 h-1 bg-teal-400 mx-auto mt-3 rounded-full"></div>
+      <div class="w-14 h-1 bg-teal-400 mx-auto mt-3 rounded-full"></div>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 space-y-10">
+  <!-- Conteúdo do Cardápio -->
+  <main class="max-w-3xl mx-auto px-4 space-y-8">
 
     <!-- 1 - DRINKS ESPECIAIS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">DRINKS ESPECIAIS</h2>
-      <div class="space-y-3">
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Strawberry Gin</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, morango, limão, tônica</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 39,90</span>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">DRINKS ESPECIAIS</h2>
+      <div class="space-y-4">
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Strawberry Gin</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, morango, limão, tônica</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 39,90</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">G-Mint</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, abacaxi, xarope de menta, limão, tônica</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 41,90</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">G-Mint</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, abacaxi, xarope de menta, limão, tônica</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 41,90</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Serenata de Morango</span><p class="text-xs text-slate-500 mt-0.5">Gin, morango, leite condensado, limão, ice de limão</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 42,90</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Serenata de Morango</span><p class="text-sm text-slate-500 mt-1">Gin, morango, leite condensado, limão, ice de limão</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 42,90</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Serenata de Maracujá</span><p class="text-xs text-slate-500 mt-0.5">Gin, maracujá, leite condensado, laranja, ice de limão</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 42,90</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Serenata de Maracujá</span><p class="text-sm text-slate-500 mt-1">Gin, maracujá, leite condensado, laranja, ice de limão</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 42,90</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Sublime Ice</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, limão, grenadine, Sprite, espuma de limão-siciliano</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 43,90</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Sublime Ice</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, limão, grenadine, Sprite, espuma de limão-siciliano</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 43,90</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Purple Rain</span><p class="text-xs text-slate-500 mt-0.5">Vodka, blue curaçao, limão, grenadine</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 37,00</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Purple Rain</span><p class="text-sm text-slate-500 mt-1">Vodka, blue curaçao, limão, grenadine</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 37,00</span>
         </div>
         <div class="flex justify-between items-start">
-          <div><span class="font-bold text-slate-800">Caipirona</span><p class="text-xs text-slate-500 mt-0.5">Cachaça, limão, açúcar, Corona</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 38,00</span>
+          <div><span class="font-bold text-slate-800 text-base">Caipirona</span><p class="text-sm text-slate-500 mt-1">Cachaça, limão, açúcar, Corona</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 38,00</span>
         </div>
       </div>
     </section>
 
     <!-- 2 - GIN & TÔNICA -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">GIN &amp; TÔNICA</h2>
-      <div class="space-y-3">
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Gin Tônica Clássico</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, água tônica, laranja</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 36,00</span>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">GIN &amp; TÔNICA</h2>
+      <div class="space-y-4">
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Gin Tônica Clássico</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, água tônica, laranja</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 36,00</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2">
-          <div><span class="font-bold text-slate-800">Gin Tropical</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, laranja, Red Bull Tropical</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 42,00</span>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Gin Tropical</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, laranja, Red Bull Tropical</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 42,00</span>
         </div>
         <div class="flex justify-between items-start">
-          <div><span class="font-bold text-slate-800">Gin Melancita</span><p class="text-xs text-slate-500 mt-0.5">Gin Tanqueray, morango, Red Bull Melancia</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 42,00</span>
+          <div><span class="font-bold text-slate-800 text-base">Gin Melancita</span><p class="text-sm text-slate-500 mt-1">Gin Tanqueray, morango, Red Bull Melancia</p></div>
+          <span class="font-bold brand-color text-base whitespace-nowrap ml-4">R$ 42,00</span>
         </div>
       </div>
     </section>
 
     <!-- 3 - CAIPIRINHAS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">CAIPIRINHAS</h2>
-      <p class="text-xs text-slate-500 mb-3 flex items-center gap-1.5 font-medium"><span>🍸</span> <span>Smirnoff + R$ 2,00 (adicional)</span></p>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left table-fixed">
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">CAIPIRINHAS</h2>
+      <p class="text-sm text-slate-500 mb-4 flex items-center gap-2 font-medium"><span class="text-xl">🍸</span> <span>Smirnoff + R$ 2,00 (adicional)</span></p>
+      
+      <div class="overflow-x-auto pb-2">
+        <table class="w-full text-base text-left table-fixed min-w-[360px]">
           <thead>
-            <tr class="border-b border-slate-200 text-xs text-slate-600 font-bold uppercase tracking-wider">
-              <th class="pb-2 w-2/5">Sabor</th>
-              <th class="pb-2 text-center brand-color w-1/5">Cachaça</th>
-              <th class="pb-2 text-center brand-color w-1/5">Saquê</th>
-              <th class="pb-2 text-center brand-color w-1/5">Vodka</th>
+            <tr class="border-b-2 border-slate-200 text-sm text-slate-600 font-bold uppercase tracking-wider">
+              <th class="pb-3 w-2/5">Sabor</th>
+              <th class="pb-3 text-center brand-color w-1/5">Cachaça</th>
+              <th class="pb-3 text-center brand-color w-1/5">Saquê</th>
+              <th class="pb-3 text-center brand-color w-1/5">Vodka</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
             <tr>
-              <td class="py-2.5 font-bold text-slate-800">Limão</td>
-              <td class="py-2.5 text-center">R$ 29,99</td>
-              <td class="py-2.5 text-center">R$ 31,99</td>
-              <td class="py-2.5 text-center">R$ 30,99 🍸</td>
+              <td class="py-3 font-bold text-slate-800">Limão</td>
+              <td class="py-3 text-center">R$ 29,99</td>
+              <td class="py-3 text-center">R$ 31,99</td>
+              <td class="py-3 text-center">R$ 30,99 🍸</td>
             </tr>
             <tr>
-              <td class="py-2.5 font-bold text-slate-800">Limão com Morango</td>
-              <td class="py-2.5 text-center">R$ 29,99</td>
-              <td class="py-2.5 text-center">R$ 31,99</td>
-              <td class="py-2.5 text-center">R$ 30,99 🍸</td>
+              <td class="py-3 font-bold text-slate-800">Limão com Morango</td>
+              <td class="py-3 text-center">R$ 29,99</td>
+              <td class="py-3 text-center">R$ 31,99</td>
+              <td class="py-3 text-center">R$ 30,99 🍸</td>
             </tr>
             <tr>
-              <td class="py-2.5 font-bold text-slate-800">Morango</td>
-              <td class="py-2.5 text-center">R$ 29,99</td>
-              <td class="py-2.5 text-center">R$ 31,99</td>
-              <td class="py-2.5 text-center">R$ 30,99 🍸</td>
+              <td class="py-3 font-bold text-slate-800">Morango</td>
+              <td class="py-3 text-center">R$ 29,99</td>
+              <td class="py-3 text-center">R$ 31,99</td>
+              <td class="py-3 text-center">R$ 30,99 🍸</td>
             </tr>
             <tr>
-              <td class="py-2.5 font-bold text-slate-800">Maracujá</td>
-              <td class="py-2.5 text-center">R$ 31,00</td>
-              <td class="py-2.5 text-center">R$ 33,00</td>
-              <td class="py-2.5 text-center">R$ 32,00 🍸</td>
+              <td class="py-3 font-bold text-slate-800">Maracujá</td>
+              <td class="py-3 text-center">R$ 31,00</td>
+              <td class="py-3 text-center">R$ 33,00</td>
+              <td class="py-3 text-center">R$ 32,00 🍸</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- 4 - CERVEJAS E BALDES (NOVO LAYOUT) -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-6 border-b-2 border-teal-500">CERVEJAS</h2>
+    <!-- 4 - CERVEJAS E BALDES (Layout otimizado para mobile - empilhado) -->
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-8">
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Cervejas -->
+      <div>
+        <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">CERVEJAS</h2>
         
-        <!-- Coluna Esquerda: Garrafa 600ml + Long Neck -->
-        <div class="space-y-8">
-          <!-- Garrafa 600ml -->
+        <div class="space-y-6">
           <div>
-            <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider bg-slate-50 inline-block px-3 py-1.5 rounded-md mb-3">GARRAFA 600ML</h3>
-            <div class="space-y-2 text-sm">
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+            <h3 class="font-bold text-slate-700 text-sm uppercase tracking-wider bg-slate-50 inline-block px-4 py-2 rounded-md mb-4">GARRAFA 600ML</h3>
+            <div class="space-y-3 text-base">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Heineken</span>
                 <span class="font-bold brand-color ml-4">R$ 19,00</span>
               </div>
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Original</span>
                 <span class="font-bold brand-color ml-4">R$ 17,00</span>
               </div>
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Amstel</span>
                 <span class="font-bold brand-color ml-4">R$ 15,00</span>
               </div>
             </div>
           </div>
 
-          <!-- Long Neck -->
           <div>
-            <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider bg-slate-50 inline-block px-3 py-1.5 rounded-md mb-3">LONG NECK</h3>
-            <div class="space-y-2 text-sm">
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+            <h3 class="font-bold text-slate-700 text-sm uppercase tracking-wider bg-slate-50 inline-block px-4 py-2 rounded-md mb-4">LONG NECK</h3>
+            <div class="space-y-3 text-base">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Corona</span>
                 <span class="font-bold brand-color ml-4">R$ 14,99</span>
               </div>
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Corona Zero</span>
                 <span class="font-bold brand-color ml-4">R$ 14,99</span>
               </div>
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Heineken</span>
                 <span class="font-bold brand-color ml-4">R$ 13,99</span>
               </div>
-              <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <span class="font-medium text-slate-800">Heineken Zero</span>
                 <span class="font-bold brand-color ml-4">R$ 13,99</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Coluna Direita: Baldes -->
-        <div class="bg-teal-50/60 p-6 rounded-2xl border border-teal-100/60 shadow-sm">
-          <h3 class="font-display text-2xl font-bold brand-color tracking-wide uppercase mb-1">BALDES</h3>
-          <p class="text-xs font-bold text-slate-700/80 uppercase tracking-wider mb-5 border-b border-teal-200/60 pb-2 inline-block">4 UNIDADES</p>
-          
-          <div class="space-y-4 text-sm">
-            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
-              <span class="font-semibold text-slate-800">Heineken 600ml</span>
-              <span class="font-bold brand-color ml-4">R$ 69,00</span>
-            </div>
-            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
-              <span class="font-semibold text-slate-800">Original 600ml</span>
-              <span class="font-bold brand-color ml-4">R$ 62,00</span>
-            </div>
-            <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
-              <span class="font-semibold text-slate-800">Amstel 600ml</span>
-              <span class="font-bold brand-color ml-4">R$ 55,00</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-semibold text-slate-800">Corona Long Neck</span>
-              <span class="font-bold brand-color ml-4">R$ 55,00</span>
-            </div>
+      <!-- Baldes -->
+      <div class="bg-teal-50/70 p-5 rounded-2xl border border-teal-100/60 shadow-sm">
+        <h3 class="font-display text-2xl font-bold brand-color tracking-wide uppercase mb-1">BALDES</h3>
+        <p class="text-xs font-bold text-slate-700/80 uppercase tracking-wider mb-4 border-b border-teal-200/60 pb-2 inline-block">4 UNIDADES</p>
+        
+        <div class="space-y-3 text-base">
+          <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+            <span class="font-semibold text-slate-800">Heineken 600ml</span>
+            <span class="font-bold brand-color ml-4">R$ 69,00</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+            <span class="font-semibold text-slate-800">Original 600ml</span>
+            <span class="font-bold brand-color ml-4">R$ 62,00</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-teal-100/50 pb-3">
+            <span class="font-semibold text-slate-800">Amstel 600ml</span>
+            <span class="font-bold brand-color ml-4">R$ 55,00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="font-semibold text-slate-800">Corona Long Neck</span>
+            <span class="font-bold brand-color ml-4">R$ 55,00</span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- 5 - PETISCOS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">PETISCOS</h2>
+    <!-- 5 - PETISCOS (com destaque mobile) -->
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">PETISCOS</h2>
       <div class="space-y-4">
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Batata Frita da Casa</span><p class="text-sm text-slate-500">Fininhas e crocantes. Acompanha molho especial.</p></div><span class="font-bold brand-color ml-4">R$ 32,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Dadinho de Tapioca</span><p class="text-sm text-slate-500">250g · Crocante por fora, macio por dentro. Sweet chilli.</p></div><span class="font-bold brand-color ml-4">R$ 35,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Coxinha Sem Massa</span><p class="text-sm text-slate-500">6 unidades · 100% frango desfiado. Molho especial.</p></div><span class="font-bold brand-color ml-4">R$ 35,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Bolinho de Pulled Pork</span><p class="text-sm text-slate-500">6 unidades crocantes com recheio artesanal. Molho especial.</p></div><span class="font-bold brand-color ml-4">R$ 35,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Chicken Bites</span><p class="text-sm text-slate-500">500g de frango empanado, dourado e crocante. Sweet chilli.</p></div><span class="font-bold brand-color ml-4">R$ 42,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Meia Batata + Meia Chicken</span><p class="text-sm text-slate-500">500g de frango + 500g de batatas fritas. Sweet chilli.</p></div><span class="font-bold brand-color ml-4">R$ 40,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-2"><div><span class="font-bold text-slate-800">Calabresa Acebolada</span><p class="text-sm text-slate-500">Calabresa grelhada com cebola salteada e vinagrete.</p></div><span class="font-bold brand-color ml-4">R$ 38,00</span></div>
-        <div class="flex justify-between items-start"><div><span class="font-bold text-slate-800">Porção Mista</span><p class="text-sm text-slate-500">Fritas crocantes + calabresa acebolada.</p></div><span class="font-bold brand-color ml-4">R$ 38,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Batata Frita da Casa</span><p class="text-sm text-slate-500 mt-1">Fininhas e crocantes. Acompanha molho especial.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 32,00</span>
+        </div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Batata com Cheddar e Bacon</span><p class="text-sm text-slate-500 mt-1">Batata frita crocante coberta com cheddar cremoso e bacon.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 40,00</span>
+        </div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Dadinho de Tapioca</span><p class="text-sm text-slate-500 mt-1">250g · Crocante por fora, macio por dentro. Sweet chilli.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 35,00</span>
+        </div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Coxinha Sem Massa</span><p class="text-sm text-slate-500 mt-1">6 unidades · 100% frango desfiado. Molho especial.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 35,00</span>
+        </div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Bolinho de Pulled Pork</span><p class="text-sm text-slate-500 mt-1">6 unidades crocantes com recheio artesanal. Molho especial.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 35,00</span>
+        </div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Chicken Bites</span><p class="text-sm text-slate-500 mt-1">500g de frango empanado, dourado e crocante. Sweet chilli.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 42,00</span>
+        </div>
+
+        <!-- Destaque Mais Pedido (Mobile) -->
+        <div class="flex flex-col sm:flex-row justify-between items-start border-b border-slate-50 pb-3 bg-amber-50/80 p-4 rounded-xl -mx-1 relative border border-amber-100/50">
+          <div class="flex flex-wrap items-center gap-2 mb-1 sm:mb-0">
+            <span class="inline-block bg-amber-400 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">⭐ Mais pedido</span>
+            <span class="font-bold text-slate-800 text-base">Meia Batata + Meia Chicken</span>
+          </div>
+          <div class="w-full sm:w-auto flex justify-between items-center mt-1 sm:mt-0">
+            <p class="text-sm text-slate-500">500g de frango + 500g de batatas fritas. Sweet chilli.</p>
+            <span class="font-bold brand-color text-base ml-4 whitespace-nowrap">R$ 40,00</span>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3">
+          <div><span class="font-bold text-slate-800 text-base">Calabresa Acebolada</span><p class="text-sm text-slate-500 mt-1">Calabresa grelhada com cebola salteada e vinagrete.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 38,00</span>
+        </div>
+        <div class="flex justify-between items-start">
+          <div><span class="font-bold text-slate-800 text-base">Porção Mista</span><p class="text-sm text-slate-500 mt-1">Fritas crocantes + calabresa acebolada.</p></div>
+          <span class="font-bold brand-color text-base ml-4">R$ 38,00</span>
+        </div>
       </div>
     </section>
 
     <!-- 6 - GARRAFAS DE DESTILADOS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">GARRAFAS DE DESTILADOS</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Gin Beefeater Pink</span><span class="font-bold brand-color">R$ 289,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Gin Beefeater Tradicional</span><span class="font-bold brand-color">R$ 269,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Gin Tanqueray London</span><span class="font-bold brand-color">R$ 289,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Johnnie Walker Black Label 1L</span><span class="font-bold brand-color">R$ 379,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Jack Daniel's Tradicional 1L</span><span class="font-bold brand-color">R$ 279,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Jack Daniel's Apple 1L</span><span class="font-bold brand-color">R$ 319,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Grey Goose</span><span class="font-bold brand-color">R$ 319,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Vodka Smirnoff</span><span class="font-bold brand-color">R$ 109,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-2"><span class="font-bold text-slate-800">Vodka Askov</span><span class="font-bold brand-color">R$ 79,00</span></div>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">GARRAFAS DE DESTILADOS</h2>
+      <div class="space-y-2 text-base">
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Gin Beefeater Pink</span><span class="font-bold brand-color">R$ 289,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Gin Beefeater Tradicional</span><span class="font-bold brand-color">R$ 269,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Gin Tanqueray London</span><span class="font-bold brand-color">R$ 289,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Johnnie Walker Black Label 1L</span><span class="font-bold brand-color">R$ 379,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Jack Daniel's Tradicional 1L</span><span class="font-bold brand-color">R$ 279,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Jack Daniel's Apple 1L</span><span class="font-bold brand-color">R$ 319,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Grey Goose</span><span class="font-bold brand-color">R$ 319,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-800">Vodka Smirnoff</span><span class="font-bold brand-color">R$ 109,00</span></div>
+        <div class="flex justify-between py-2"><span class="font-bold text-slate-800">Vodka Askov</span><span class="font-bold brand-color">R$ 79,00</span></div>
       </div>
     </section>
 
     <!-- 7 - COMBOS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">COMBOS</h2>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">COMBOS</h2>
       <div class="space-y-6">
         <div>
-          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Gin + Energético + Bandeja de Frutas</h3>
-          <div class="space-y-1 text-sm">
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Tanqueray London + 4 Red Bull</span><span class="font-bold brand-color">R$ 354,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Beefeater + 4 Red Bull</span><span class="font-bold brand-color">R$ 335,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Beefeater Pink + 4 Red Bull</span><span class="font-bold brand-color">R$ 354,00</span></div>
+          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-3">Gin + Energético + Bandeja de Frutas</h3>
+          <div class="space-y-2 text-base">
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Tanqueray London + 4 Red Bull</span><span class="font-bold brand-color">R$ 354,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Beefeater + 4 Red Bull</span><span class="font-bold brand-color">R$ 335,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Beefeater Pink + 4 Red Bull</span><span class="font-bold brand-color">R$ 354,00</span></div>
           </div>
         </div>
         <div>
-          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Gin + Tônica + Bandeja de Frutas</h3>
-          <div class="space-y-1 text-sm">
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Tanqueray London + 4 Tônicas</span><span class="font-bold brand-color">R$ 265,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Beefeater + 4 Tônicas</span><span class="font-bold brand-color">R$ 250,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Beefeater Pink + 4 Tônicas</span><span class="font-bold brand-color">R$ 265,00</span></div>
+          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-3">Gin + Tônica + Bandeja de Frutas</h3>
+          <div class="space-y-2 text-base">
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Tanqueray London + 4 Tônicas</span><span class="font-bold brand-color">R$ 265,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Beefeater + 4 Tônicas</span><span class="font-bold brand-color">R$ 250,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Beefeater Pink + 4 Tônicas</span><span class="font-bold brand-color">R$ 265,00</span></div>
           </div>
         </div>
         <div>
-          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Whisky + Energético + Gelo Saborizado</h3>
-          <div class="space-y-1 text-sm">
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Jack Daniel's + 5 Energéticos</span><span class="font-bold brand-color">R$ 359,90</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Jack Daniel's Apple + 5 Energéticos</span><span class="font-bold brand-color">R$ 405,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Black Label + 5 Energéticos</span><span class="font-bold brand-color">R$ 460,00</span></div>
+          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-3">Whisky + Energético + Gelo Saborizado</h3>
+          <div class="space-y-2 text-base">
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Jack Daniel's + 5 Energéticos</span><span class="font-bold brand-color">R$ 359,90</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Jack Daniel's Apple + 5 Energéticos</span><span class="font-bold brand-color">R$ 405,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Black Label + 5 Energéticos</span><span class="font-bold brand-color">R$ 460,00</span></div>
           </div>
         </div>
         <div>
-          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Vodka + Energético + Bandeja de Frutas + Gelo</h3>
-          <div class="space-y-1 text-sm">
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Grey Goose + 5 Energéticos</span><span class="font-bold brand-color">R$ 385,00</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Smirnoff + 5 Energéticos</span><span class="font-bold brand-color">R$ 184,90</span></div>
-            <div class="flex justify-between border-b border-slate-50 pb-1"><span>Askov + 5 Energéticos</span><span class="font-bold brand-color">R$ 149,90</span></div>
+          <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-3">Vodka + Energético + Bandeja de Frutas + Gelo</h3>
+          <div class="space-y-2 text-base">
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Grey Goose + 5 Energéticos</span><span class="font-bold brand-color">R$ 385,00</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Smirnoff + 5 Energéticos</span><span class="font-bold brand-color">R$ 184,90</span></div>
+            <div class="flex justify-between border-b border-slate-50 pb-2"><span>Askov + 5 Energéticos</span><span class="font-bold brand-color">R$ 149,90</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 8 - DOSES -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">DOSES</h2>
-      <p class="text-xs text-slate-500 mb-3">Adicione Red Bull à sua dose · +R$ 19,00 · servida com gelo saborizado</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Gin Beefeater (150ml)</span><span class="font-bold brand-color">R$ 39,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Gin Beefeater Pink (150ml)</span><span class="font-bold brand-color">R$ 41,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Vodka Smirnoff (150ml)</span><span class="font-bold brand-color">R$ 24,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Jack Daniel's (150ml)</span><span class="font-bold brand-color">R$ 42,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Jack Daniel's Apple (150ml)</span><span class="font-bold brand-color">R$ 44,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Johnnie Walker Black Label (150ml)</span><span class="font-bold brand-color">R$ 48,00</span></div>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">DOSES</h2>
+      <p class="text-sm text-slate-500 mb-4">Adicione Red Bull à sua dose · +R$ 19,00 · servida com gelo saborizado</p>
+      <div class="space-y-2 text-base">
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Gin Beefeater (150ml)</span><span class="font-bold brand-color">R$ 39,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Gin Beefeater Pink (150ml)</span><span class="font-bold brand-color">R$ 41,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Vodka Smirnoff (150ml)</span><span class="font-bold brand-color">R$ 24,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Jack Daniel's (150ml)</span><span class="font-bold brand-color">R$ 42,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Jack Daniel's Apple (150ml)</span><span class="font-bold brand-color">R$ 44,00</span></div>
+        <div class="flex justify-between pb-2"><span>Johnnie Walker Black Label (150ml)</span><span class="font-bold brand-color">R$ 48,00</span></div>
       </div>
     </section>
 
     <!-- 9 - SHOTS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-4 border-b-2 border-teal-500">SHOTS</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Tequila</span><span class="font-bold brand-color">R$ 15,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Canelinha da Rocha</span><span class="font-bold brand-color">R$ 10,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Bananazinha</span><span class="font-bold brand-color">R$ 12,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Ballena</span><span class="font-bold brand-color">R$ 26,00</span></div>
-        <div class="flex justify-between border-b border-slate-50 pb-1"><span>Licor 43</span><span class="font-bold brand-color">R$ 29,90</span></div>
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <h2 class="font-display text-2xl font-bold brand-color pb-2 mb-5 border-b-2 border-teal-500">SHOTS</h2>
+      <div class="space-y-2 text-base">
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Tequila</span><span class="font-bold brand-color">R$ 15,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Canelinha da Rocha</span><span class="font-bold brand-color">R$ 10,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Bananazinha</span><span class="font-bold brand-color">R$ 12,00</span></div>
+        <div class="flex justify-between border-b border-slate-50 pb-2"><span>Ballena</span><span class="font-bold brand-color">R$ 26,00</span></div>
+        <div class="flex justify-between pb-2"><span>Licor 43</span><span class="font-bold brand-color">R$ 29,90</span></div>
       </div>
     </section>
 
     <!-- 10 - BEBIDAS -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
       <h2 class="font-display text-2xl font-bold brand-color pb-1 mb-4 border-b-2 border-teal-500">BEBIDAS</h2>
       <p class="text-slate-500 italic text-sm -mt-3 mb-6">Refrescantes e energéticos</p>
-      <div class="space-y-4">
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Mineral</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água com Gás</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 6,90</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Tônica</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 8,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Del Valle (Lata)</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 9,00</span></div>
+      <div class="space-y-3 text-base">
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Mineral</span><span class="font-bold brand-color ml-4">R$ 6,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água com Gás</span><span class="font-bold brand-color ml-4">R$ 6,90</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Água Tônica</span><span class="font-bold brand-color ml-4">R$ 8,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Del Valle (Lata)</span><span class="font-bold brand-color ml-4">R$ 9,00</span></div>
         <div class="flex justify-between items-start border-b border-slate-50 pb-3">
-          <div><span class="font-bold text-slate-800">Refrigerante (Lata)</span><p class="text-xs text-slate-500 mt-0.5">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 8,00</span>
+          <div><span class="font-bold text-slate-800 text-base">Refrigerante (Lata)</span><p class="text-sm text-slate-500 mt-1">Coca-Cola · Coca-Cola Zero · Guaraná · Guaraná Zero · Fanta Uva</p></div>
+          <span class="font-bold brand-color ml-4">R$ 8,00</span>
         </div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Red Bull</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 19,00</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Smirnoff Ice</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span></div>
-        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800">Skol Beats</span><span class="font-bold brand-color whitespace-nowrap ml-4">R$ 15,99</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800 text-base">Red Bull</span><span class="font-bold brand-color ml-4">R$ 19,00</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800 text-base">Smirnoff Ice</span><span class="font-bold brand-color ml-4">R$ 15,99</span></div>
+        <div class="flex justify-between items-start border-b border-slate-50 pb-3"><span class="font-bold text-slate-800 text-base">Skol Beats</span><span class="font-bold brand-color ml-4">R$ 15,99</span></div>
         <div class="flex justify-between items-start">
-          <div><span class="font-bold text-slate-800">Xeque Mate</span><p class="text-xs text-slate-500 mt-0.5">Servido em copo de 500ml com gelo e limão</p></div>
-          <span class="font-bold brand-color whitespace-nowrap ml-4">R$ 20,00</span>
+          <div><span class="font-bold text-slate-800 text-base">Xeque Mate</span><p class="text-sm text-slate-500 mt-1">Servido em copo de 500ml com gelo e limão</p></div>
+          <span class="font-bold brand-color ml-4">R$ 20,00</span>
         </div>
       </div>
     </section>
 
     <!-- 11 - NARGUILÉ -->
-    <section class="card-box bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-      <div class="text-center mb-6">
+    <section class="card-box bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <div class="text-center mb-5">
         <h2 class="font-display text-3xl font-bold text-gold tracking-wider uppercase mb-2">NARGUILÉ</h2>
         <p class="text-slate-500 italic font-light text-sm tracking-wide">Momento de relaxar</p>
         <div class="w-12 h-0.5 bg-gold mx-auto mt-3 rounded-full"></div>
       </div>
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-4">
-        <div>
-          <h3 class="font-bold text-lg text-slate-800">Sessão completa</h3>
-          <div class="flex flex-wrap gap-x-2 gap-y-1 text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl">
-            <span>🍓 Morango &amp; Laranja</span> · <span>🍓 Tutti Frutti</span> · <span>🍎 Duas Maçãs</span> · <span>🍇 Frutas Roxas</span> · <span>🍏 Frutas Verdes</span> · <span>🍉 Melancia</span> · <span>🥝 Fresh Passion</span> · <span>🍋 Yellow</span> · <span>🌿 Menta</span>
+        <div class="w-full">
+          <h3 class="font-bold text-lg text-slate-800 mb-2">Sessão completa</h3>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
+            <span>🍓 Morango &amp; Laranja</span> · 
+            <span>🍓 Tutti Frutti</span> · 
+            <span>🍎 Duas Maçãs</span> · 
+            <span>🍇 Frutas Roxas</span> · 
+            <span>🍏 Frutas Verdes</span> · 
+            <span>🍉 Melancia</span> · 
+            <span>🥝 Fresh Passion</span> · 
+            <span>🍋 Yellow</span> · 
+            <span>🌿 Menta</span>
           </div>
         </div>
-        <span class="font-bold text-gold text-lg whitespace-nowrap mt-2 sm:mt-0">30,00</span>
+        <span class="font-bold text-gold text-lg whitespace-nowrap mt-3 sm:mt-0">30,00</span>
       </div>
     </section>
 
   </main>
 
-  <footer class="text-center text-slate-400 text-xs mt-12">
+  <footer class="text-center text-slate-400 text-xs mt-12 px-4">
     <p>© SUBLIME BAR — Todos os direitos reservados</p>
   </footer>
 
